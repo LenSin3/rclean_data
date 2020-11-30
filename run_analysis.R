@@ -55,9 +55,22 @@ data_mean_std <- data_full[, c(1, 2, mean_std + 2)]
 # head(data_mean_std, 2)
 
 # Rename activity names to descriptive names
-## Read labels from activity.txt file
+# Read labels from activity.txt file
 activity_labels <- read.table(".\\UCI HAR Dataset\\activity_labels.txt", header = FALSE, sep = ' ')
 activity_labels <- as.character(activity_labels[,2])
 data_mean_std$activity <- activity_labels[data_mean_std$activity]
 # head(data_mean_std)
 
+# Use descriptive labels to labels dataset names
+label_names <- names(data_mean_std)
+label_names <- gsub("[(][)]", "", label_names)
+label_names <- gsub("^t", "TimeDomain_", label_names)
+label_names <- gsub("^f", "FrequencyDomain_", label_names)
+label_names <- gsub("Acc", "Accelerometer", label_names)
+label_names <- gsub("Gyro", "Gyroscope",label_names)
+label_names <- gsub("Mag", "Magnitude", label_names)
+label_names <- gsub("-mean-", "_Mean_", label_names)
+label_names <- gsub("-std-", "_StandardDeviation_", label_names)
+label_names <- gsub("-", "_", label_names)
+names(data_mean_std) <- label_names
+# head(data_mean_std, 3)
