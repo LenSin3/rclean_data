@@ -32,7 +32,7 @@ names(train_dataset) <- c(c('subject', 'activity'), features)
 
 # Test Data
 
-# Import train data set
+# Import test data set
 test_data_x <- read.table('.\\UCI HAR Dataset\\test\\X_test.txt', header=FALSE)
 
 # Import the activity labels
@@ -45,4 +45,7 @@ test_subject <- read.csv('.\\UCI HAR Dataset\\test\\subject_test.txt', header=FA
 test_dataset <- data.frame(test_subject, test_activity, test_data_x)
 names(test_dataset) <- c(c('subject', 'activity'), features)
 # head(test_dataset)
+
+# Merge train_data and test_data data_full
+data_full <- rbind(train_dataset, test_dataset)
 
