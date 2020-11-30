@@ -49,3 +49,8 @@ names(test_dataset) <- c(c('subject', 'activity'), features)
 # Merge train_data and test_data data_full
 data_full <- rbind(train_dataset, test_dataset)
 
+# Extract mean and standard deviation of each measurement
+mean_std <- grep('mean|std', features)
+data_mean_std <- data_full[, c(1, 2, mean_std + 2)]
+# head(data_mean_std, 2)
+
