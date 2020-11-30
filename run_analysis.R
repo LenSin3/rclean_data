@@ -32,3 +32,17 @@ names(train_dataset) <- c(c('subject', 'activity'), features)
 
 # Test Data
 
+# Import train data set
+test_data_x <- read.table('.\\UCI HAR Dataset\\test\\X_test.txt', header=FALSE)
+
+# Import the activity labels
+test_activity <- read.csv('.\\UCI HAR Dataset\\test\\y_test.txt', header=FALSE)
+
+# Import the subject labels
+test_subject <- read.csv('.\\UCI HAR Dataset\\test\\subject_test.txt', header=FALSE)
+
+# Merge into data frame test_dataset
+test_dataset <- data.frame(test_subject, test_activity, test_data_x)
+names(test_dataset) <- c(c('subject', 'activity'), features)
+# head(test_dataset)
+
