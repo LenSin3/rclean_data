@@ -74,3 +74,7 @@ label_names <- gsub("-std-", "_StandardDeviation_", label_names)
 label_names <- gsub("-", "_", label_names)
 names(data_mean_std) <- label_names
 # head(data_mean_std, 3)
+
+# Create a tidy and independent data set with average of each variable for each activity and each subject
+tidy_data <- aggregate(data_mean_std[,3:81], by = list(activity = data_mean_std$activity, subject = data_mean_std$subject),FUN = mean)
+write.table(x = tidy_data, file = "tidy_data.txt", row.names = FALSE)
