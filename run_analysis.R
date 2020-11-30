@@ -54,3 +54,10 @@ mean_std <- grep('mean|std', features)
 data_mean_std <- data_full[, c(1, 2, mean_std + 2)]
 # head(data_mean_std, 2)
 
+# Rename activity names to descriptive names
+## Read labels from activity.txt file
+activity_labels <- read.table(".\\UCI HAR Dataset\\activity_labels.txt", header = FALSE, sep = ' ')
+activity_labels <- as.character(activity_labels[,2])
+data_mean_std$activity <- activity_labels[data_mean_std$activity]
+# head(data_mean_std)
+
